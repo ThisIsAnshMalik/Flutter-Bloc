@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_learning/counter_cubit.dart';
 
 class CounterScreen extends StatelessWidget {
@@ -9,7 +10,6 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counter = counterCubit.state;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -22,17 +22,35 @@ class CounterScreen extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            BlocBuilder(
+              bloc: counterCubit,
+              builder: (context, state) {
+                return Text(
+                  '$state',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () => counterCubit.increment(),
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton(
+            onPressed: () => counterCubit.decrement(),
+            tooltip: 'Increment',
+            child: const Icon(Icons.remove),
+          ),
+        ],
       ),
     );
   }
