@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CounterScreen(title: "Counter Screen with cubit"),
+      home: CounterScreen(title: "Counter Screen with cubit"),
     );
   }
 }
