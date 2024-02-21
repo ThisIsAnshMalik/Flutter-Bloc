@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_learning/counter_cubit.dart';
 
 class CounterScreen extends StatelessWidget {
-  CounterScreen({super.key, required this.title});
+  const CounterScreen({super.key, required this.title});
 
   final String title;
-  final counterCubit = CounterCubit();
 
   @override
   Widget build(BuildContext context) {
+    final counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
