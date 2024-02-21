@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_learning/bloc/counter_bloc.dart';
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({super.key, required this.title});
@@ -19,9 +21,13 @@ class CounterScreen extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '',
-              style: Theme.of(context).textTheme.headlineMedium,
+            BlocBuilder<CounterBloc, int>(
+              builder: (context, counter) {
+                return Text(
+                  "$counter",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
             )
           ],
         ),
