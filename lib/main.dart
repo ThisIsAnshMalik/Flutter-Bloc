@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc_learning/add_todo_page.dart';
+import 'package:flutter_bloc_learning/todo_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +17,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => const TodoList(),
+        '/add-todo': (_) => const AddTodoPage(),
+      },
     );
   }
 }
