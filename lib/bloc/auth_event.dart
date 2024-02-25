@@ -13,3 +13,5 @@ final class AuthLoginRequested extends AuthEvent {
 
   const AuthLoginRequested({required this.email, required this.password});
 }
+
+final class AuthLogOutRequested extends AuthEvent {}
