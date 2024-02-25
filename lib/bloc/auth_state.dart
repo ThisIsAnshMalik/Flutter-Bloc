@@ -20,3 +20,5 @@ final class AuthFailure extends AuthState {
 
   const AuthFailure(this.error);
 }
+
+final class AuthLoading extends AuthState {}
