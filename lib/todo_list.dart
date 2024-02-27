@@ -12,19 +12,17 @@ class TodoList extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Todo List'),
       ),
-      body: BlocBuilder<TodoBloc, List<TodoModel>>(
-        builder: (context, todos) {
-          return ListView.builder(
-            itemCount: todos.length,
-            itemBuilder: (context, index) {
-              final todo = todos[index];
-              return ListTile(
-                title: Text(todo.name),
-              );
-            },
-          );
-        },
-      ),
+      body: BlocBuilder<TodoBloc, List<TodoModel>>(builder: (context, state) {
+        return ListView.builder(
+          itemCount: state.length,
+          itemBuilder: (context, index) {
+            // final todo = state.todos[0];
+            return ListTile(
+              title: Text(state[index].name.toString()),
+            );
+          },
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/add-todo');

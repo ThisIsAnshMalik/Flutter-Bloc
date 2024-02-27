@@ -28,8 +28,8 @@ class _AddTodoPageState extends State<AddTodoPage> {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                BlocProvider.of<TodoBloc>(context).add(TodoAdded(
-                    title: todoTitleController.value.toString().trim()));
+                BlocProvider.of<TodoBloc>(context)
+                    .add(TodoAdded(title: todoTitleController.text));
                 Navigator.pop(context);
               },
               child: const Text('Add'),

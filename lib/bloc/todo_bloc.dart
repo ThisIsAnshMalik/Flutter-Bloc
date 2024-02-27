@@ -3,15 +3,22 @@ import 'package:flutter_bloc_learning/model/todo_model.dart';
 
 class TodoBloc extends Bloc<TodoAdded, List<TodoModel>> {
   TodoBloc() : super([]) {
-    on<TodoAdded>((event, emit) {
-      emit([...state]);
+    on<TodoAdded>((
+      TodoAdded event,
+      Emitter<List<TodoModel>> emit,
+    ) {
+      if (event.title.isEmpty) {
+        addError('title cannot be empty!');
+        return;
+      }
+      final todo = TodoModel(name: event.title, createdAt: DateTime.now());
+      emit([...state, todo]);
     });
   }
 }
 
 class TodoAdded {
-  TodoAdded({required this.title});
-  String title;
+  final String title;
 
-  final todo = TodoModel(name: "title", createdAt: DateTime.now());
+  TodoAdded({required this.title});
 }
