@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_learning/additional_info_item.dart';
 import 'package:flutter_bloc_learning/hourly_forecast_item.dart';
-import 'package:flutter_bloc_learning/secrets.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -15,33 +12,9 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  late Future<Map<String, dynamic>> weather;
-
-  Future<Map<String, dynamic>> getCurrentWeather() async {
-    try {
-      String cityName = 'London';
-      final res = await http.get(
-        Uri.parse(
-          'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey',
-        ),
-      );
-
-      final data = jsonDecode(res.body);
-
-      if (data['cod'] != '200') {
-        throw 'An unexpected error occurred';
-      }
-
-      return data;
-    } catch (e) {
-      throw e.toString();
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    weather = getCurrentWeather();
   }
 
   @override
@@ -58,9 +31,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              setState(() {
-                weather = getCurrentWeather();
-              });
+              setState(() {});
             },
             icon: const Icon(Icons.refresh),
           ),
@@ -82,9 +53,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           }
 
           final data = snapshot.data!;
-
           final currentWeatherData = data['list'][0];
-
           final currentTemp = currentWeatherData['main']['temp'];
           final currentSky = currentWeatherData['weather'][0]['main'];
           final currentPressure = currentWeatherData['main']['pressure'];
