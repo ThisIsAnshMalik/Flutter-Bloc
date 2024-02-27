@@ -2,11 +2,11 @@
 import 'dart:convert';
 
 class WeatherModel {
-  final double currentTemp;
+  final num currentTemp;
   final String currentSky;
-  final double currentPressure;
-  final double currentWindSpeed;
-  final double currentHumidity;
+  final num currentPressure;
+  final num currentWindSpeed;
+  final num currentHumidity;
   WeatherModel({
     required this.currentTemp,
     required this.currentSky,
